@@ -1,0 +1,33 @@
+type Query {
+    publicUsers(page: Int!, size: Int!): PublicUsers
+}
+
+type Mutation {
+    updateUser(user: SubmittedUser!): User
+}
+
+type Page {
+    page: Int!
+    size: Int!
+    totalPages: Int!
+    totalCounts: Int!
+    hasNext: Boolean!
+    hasPrevious: Boolean!
+}
+
+type PublicUsers {
+    list: [User!]!
+    page: Page!
+}
+
+type User {
+    id: String!
+    login: String!
+    avatar: String
+}
+
+input SubmittedUser {
+    id: String!
+    login: String!
+    avatar: String
+}
