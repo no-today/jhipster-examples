@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  jhipster-nacos:
+  uaa-nacos:
     image: nacos/nacos-server:1.4.1
     environment:
       - PREFER_HOST_MODE=ip

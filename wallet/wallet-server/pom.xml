@@ -6,10 +6,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.notoday.wallet</groupId>
-    <artifactId>wallet</artifactId>
+    <artifactId>wallet-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Wallet</name>
+    <name>wallet-server</name>
 
     <repositories>
         <!-- jhipster-needle-maven-repository -->
@@ -84,6 +84,10 @@
         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
         <sonar-maven-plugin.version>3.9.0.2155</sonar-maven-plugin.version>
         <!-- jhipster-needle-maven-property -->
+        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
+        <lombok.version>1.18.20</lombok.version>
+        <redisson.version>3.16.3</redisson.version>
+        <hutool.version>5.7.14</hutool.version>
     </properties>
 
     <dependencyManagement>
@@ -96,10 +100,52 @@
                 <scope>import</scope>
             </dependency>
             <!-- jhipster-needle-maven-add-dependency-management -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <!-- internal-dependency -->
+        <dependency>
+            <groupId>io.github.notoday.commons</groupId>
+            <artifactId>commons-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- internal-dependency -->
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- jhipster-needle-maven-add-dependency -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>tech.jhipster</groupId>
             <artifactId>jhipster-framework</artifactId>
@@ -463,6 +509,11 @@
                                 <version>${jaxb-runtime.version}</version>
                             </path>
                             <!-- jhipster-needle-maven-add-annotation-processor -->
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
                         </annotationProcessorPaths>
                     </configuration>
                 </plugin>
